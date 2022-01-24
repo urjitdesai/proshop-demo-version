@@ -1,7 +1,8 @@
 const Order = require("../models/orderModel");
 const expressAsyncHandler = require("express-async-handler");
 const nodemailer = require("nodemailer");
-
+const dotenv = require("dotenv");
+dotenv.config();
 const addOrderItems = expressAsyncHandler(async (req, res) => {
   const {
     orderItems,
@@ -41,8 +42,8 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
       port: 465, // true for 465, false for other ports
       host: "smtp.gmail.com",
       auth: {
-        user: "urjitdesai07@gmail.com",
-        pass: "9820731508",
+        user: process.env.EMAIL_ID,
+        pass: process.env.PASSWORD,
       },
       secure: true,
     });
